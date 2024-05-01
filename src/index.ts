@@ -1,3 +1,3 @@
-import Dibapress from "./components/Dibapress";
-import Button from "./ui/Button";
+import { Dibapress } from "./components/index";
+import { Button } from "./components/index";
 export { Dibapress, Button };

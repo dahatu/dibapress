@@ -2,9 +2,10 @@
   "name": "dibapress",
   "version": "1.0.0",
   "main": "index.js",
+  "types": "types",
   "scripts": {
     "dev": "npm run build && tsc --watch",
-    "build": "tsc && cp package.json dist"
+    "build": "rm -rf dist && tsc && cp package.json dist"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,8 @@
   "dependencies": {
     "next": "^14.2.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "styled-components": "^6.1.9",
+    "zustand": "^4.5.2"
   }
 }
