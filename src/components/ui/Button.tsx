@@ -1,12 +1,7 @@
 "use client";
 
 import React, { ButtonHTMLAttributes } from "react";
-import styled, {
-  ThemeContext,
-  ThemeProvider,
-  createGlobalStyle,
-  useTheme,
-} from "styled-components";
+import styled from "styled-components";
 
 const UIButton = styled.button`
   margin: 0px;

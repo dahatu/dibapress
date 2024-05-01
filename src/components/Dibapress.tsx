@@ -42,7 +42,7 @@ const Dibapress: React.FC<Props> = (props) => {
       <div className="font-bold text-xl">Dibapress UI Kit goes here</div>
       {path == `${baseUrl}/posts` && <div>Here is posts page</div>}
       <br />
-      <div style={{ display: "flex", gap: 10 }}>
+      <div style={{ display: "flex", gap: 3 }}>
         <Button>+ Add Collection</Button>
         <Button>+ Add Taxonomy</Button>
         <Button>+ Add Term</Button>
