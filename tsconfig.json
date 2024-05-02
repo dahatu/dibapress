@@ -4,17 +4,20 @@
     "baseUrl": "./src",
     "declaration": true,
     "declarationDir": "./dist/types",
-    "target": "ES6",
-    "jsx": "preserve",
+    "target": "ESNext",
+    "jsx": "react-jsx",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "Node",
     "removeComments": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "moduleDetection": "auto"
+    "moduleDetection": "auto",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { Dibapress } from "./components/index";
-import { Button } from "./components/index";
+import { Dibapress } from "./components";
+import { Button } from "./components";
 
 export { Dibapress, Button };

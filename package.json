@@ -4,8 +4,8 @@
   "main": "index.js",
   "types": "types",
   "scripts": {
-    "dev": "npm run build && tsc --watch",
-    "build": "rm -rf dist && tsc && cp package.json dist"
+    "rollup": "rollup -c",
+    "rollup:watch": "rollup -c --watch"
   },
   "keywords": [
     "dibapress",
@@ -16,17 +16,22 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.12.7",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
-    "typescript": "^5.4.5"
+    "glob": "^10.3.12",
+    "lodash": "^4.17.21",
+    "rollup": "^4.17.2",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-preserve-directives": "^0.4.0",
+    "styled-components": "^6.1.9",
+    "typescript": "^5.4.5",
+    "zustand": "^4.5.2"
   },
   "dependencies": {
-    "lodash": "^4.17.21",
     "next": "^14.2.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "styled-components": "^6.1.9",
-    "zustand": "^4.5.2"
+    "react-dom": "^18.3.1"
   }
 }
