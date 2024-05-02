@@ -4,6 +4,8 @@ import { defineConfig } from "rollup";
 import typescript from "@rollup/plugin-typescript";
 import preserveDirectives from "rollup-plugin-preserve-directives";
 import copy from "rollup-plugin-copy";
+import alias from "@rollup/plugin-alias";
+import terser from "@rollup/plugin-terser";
 
 export default defineConfig({
   input: Object.fromEntries(
@@ -17,12 +19,16 @@ export default defineConfig({
   ),
   output: {
     dir: "dist",
-    format: "esm",
+    format: "es",
     preserveModules: true,
+    compact: true,
+    minifyInternalExports: true,
   },
+  treeshake: true,
   plugins: [
     typescript({ tsconfig: "./tsconfig.json" }),
     preserveDirectives(),
+    terser(),
     copy({
       targets: [
         { src: "package.json", dest: "dist", absolute: false },

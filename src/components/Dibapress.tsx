@@ -4,6 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { useConfig } from "../stores/useConfig";
 import Button from "../components/ui/Button";
+import {Plus, UserPlus2} from 'lucide-react'
 
 type Field = {
   key: string;
@@ -41,11 +42,11 @@ const Dibapress: React.FC<Props> = (props) => {
     <div id="dibapress" style={{ padding: 20 }}>
       <div className="font-bold text-xl">Dibapress UI Kit goes here</div>
       <br />
-      <div style={{ display: "flex", gap: 3 }}>
-        <Button>+ Add Collection</Button>
+      <div style={{ display: "flex", gap: 6 }}>
+        <Button><Plus size={16} style={{marginInlineEnd: -10}}/>Add Colly</Button>
         <Button>+ Add Taxonomy</Button>
         <Button>+ Add Tax Term</Button>
-        <Button>+ Add User</Button>
+        <Button><UserPlus2 size={16} style={{marginInlineEnd: -10}}/> Add User</Button>
       </div>
     </div>
   );

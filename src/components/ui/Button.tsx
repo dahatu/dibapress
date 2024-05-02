@@ -5,21 +5,25 @@ import styled from "styled-components";
 
 const UIButton = styled.button`
   margin: 0px;
-  padding: 0.175rem 0.65rem;
-  border-width: 1px;
+  padding: 0.275rem 0.65rem;
   outline: 0px;
   user-select: none;
   cursor: pointer;
   background-color: unset;
   color: rgba(0, 0, 0, 0.62);
-  border-radius: 0.575rem;
+  border-radius: 0.475rem;
   isolation: isolate;
   display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   -webkit-box-align: center;
   align-items: center;
   transition-property: background-color, background, border-color, color, fill,
     stroke, opacity, box-shadow, transform;
   transition-duration: 200ms;
+  border-width: 1px;
   font-family: inherit;
   letter-spacing: normal;
   font-weight: 500;
@@ -41,10 +45,13 @@ const UIButton = styled.button`
   &:hover {
     background-color: rgba(0, 0, 0, 0.04);
   }
+  &:active {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
   &:focus {
-    border-color: rgba(0, 0, 0, 0.11);
+    border-color: rgba(0, 0, 0, 0.16);
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px,
-      rgba(0, 0, 0, 0.05) 0px 0px 0px 3px;
+      rgba(0, 0, 0, 0.05) 0px 0px 0px 4px;
   }
   @media (prefers-color-scheme: dark) {
     & {
@@ -57,11 +64,14 @@ const UIButton = styled.button`
     &:hover {
       background-color: rgba(255, 255, 255, 0.08);
     }
+    &:active {
+      background-color: rgba(255, 255, 255, 0.10);
+    }
     &:focus {
-      border-color: rgba(255, 255, 255, 0.11);
+      border-color: rgba(255, 255, 255, 0.14);
       box-shadow: rgba(0, 0, 0, 0.48) 0px 2px 3px -1px,
         rgba(0, 0, 0, 0.4) 0px 1px 0px 0px,
-        rgba(255, 255, 255, 0.04) 0px 0px 0px 3px;
+        rgba(255, 255, 255, 0.08) 0px 0px 0px 4px;
     }
   }
 `;
