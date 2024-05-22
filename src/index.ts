@@ -1,4 +1,10 @@
-import { Dibapress } from "./components";
-import { Button } from "./components";
+import ImageKit from "imagekit";
+import Dibapress from "./components/Dibapress";
+const ik = new ImageKit({
+    privateKey: "",
+    publicKey: "",
+    urlEndpoint: "",
+})
 
-export { Dibapress, Button };
+
+export { Dibapress };

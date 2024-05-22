@@ -4,7 +4,6 @@ import { defineConfig } from "rollup";
 import typescript from "@rollup/plugin-typescript";
 import preserveDirectives from "rollup-plugin-preserve-directives";
 import copy from "rollup-plugin-copy";
-import alias from "@rollup/plugin-alias";
 import terser from "@rollup/plugin-terser";
 
 export default defineConfig({

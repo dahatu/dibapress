@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { useConfig } from "../stores/useConfig";
-import Button from "../components/ui/Button";
+import Button from "../ui/Button";
 import {Plus, UserPlus2} from 'lucide-react'
 
 type Field = {
