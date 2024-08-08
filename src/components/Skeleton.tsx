@@ -1,11 +1,7 @@
 import React from "react";
-
-//@ts-ignore
-import Avatar from "../assets/avatar.png";
 import {
   Home,
   Home2,
-  Home3,
   Music,
   MusicLibrary2,
   PictureFrame,
@@ -15,10 +11,12 @@ import {
 } from "iconsax-react";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { HexColorPicker, HslStringColorPicker } from "react-colorful";
+import { HexColorPicker } from "react-colorful";
 import { useConfig } from "../stores/useConfig";
 import Button from "../elements/Button";
 
+//@ts-ignore
+import Avatar from "../assets/avatar.png";
 
 function Skeleton() {
   const config = useConfig();
@@ -38,7 +36,7 @@ function Skeleton() {
         id: Math.random(),
         type: "menu-item",
         title: "Dashboard",
-        icon: <Home2 variant="Bulk" size={20} />,
+        icon: <Home variant="Bulk" size={20} />,
       },
       {
         id: Math.random(),
@@ -167,7 +165,7 @@ function Skeleton() {
                         height: 1,
                         backgroundColor: "#0005",
                         opacity: 0.2,
-                        marginBlock: 10
+                        marginBlock: 10,
                       }}
                     >
                       {item.title}
@@ -233,8 +231,8 @@ function Skeleton() {
           color={config.accentColor}
           onChange={config.updateAccentColor}
         />
-        <br/>
-        <Button/>
+        <br />
+        <Button />
         <div style={{ minHeight: 3000 }}></div>
       </div>
     </div>

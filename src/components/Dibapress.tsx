@@ -36,7 +36,7 @@ const Dibapress: React.FC<Props> = (props) => {
   }, [])
 
   return (
-    <div id="dibapress" className={'dibapress'}>
+    <div id="dibapress">
       {!loaded && <SpinnerCircularFixed color={config.accentColor} secondaryColor="#ccc"/>}
       {loaded && <Skeleton />}
     </div>
