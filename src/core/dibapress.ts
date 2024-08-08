@@ -1,4 +1,4 @@
-type PostTypeConfig = {
+ type PostTypeConfig = {
   name: string;
   label: string;
   description: string;

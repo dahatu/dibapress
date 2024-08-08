@@ -1,40 +1,27 @@
-import { globSync } from "glob";
-import path from "path";
 import { defineConfig } from "rollup";
+import { globSync } from "glob";
+import treser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
-import preserveDirectives from "rollup-plugin-preserve-directives";
-import copy from "rollup-plugin-copy";
-import terser from "@rollup/plugin-terser";
+import image from "@rollup/plugin-image";
+import path from "path";
+import { fileURLToPath } from "url";
 
 export default defineConfig({
-  input: Object.fromEntries(
-    globSync(["src/**/*.ts", "src/**/*.tsx"]).map((file) => {
-      const dirname = path.dirname(file).split("src")[1].slice(1);
-      const filename = path.basename(file, path.extname(file));
-      const entry = path.join(dirname, filename);
-      console.log([entry, file]);
-      return [entry, file];
-    })
+  input: Object.fromEntries( 
+    globSync(["./src/**/*.ts", "./src/**/*.tsx"]).map((file) => [
+      path.relative(
+        "src",
+        file.slice(0, file.length - path.extname(file).length)
+      ),
+      fileURLToPath(new URL(file, import.meta.url)),
+    ])
   ),
   output: {
-    dir: "dist",
-    format: "es",
-    preserveModules: true,
-    compact: true,
-    minifyInternalExports: true,
+    dir: "./dist",
+    format: "esm"
   },
-  treeshake: true,
-  plugins: [
-    typescript({ tsconfig: "./tsconfig.json" }),
-    preserveDirectives(),
-    terser(),
-    copy({
-      targets: [
-        { src: "package.json", dest: "dist", absolute: false },
-        { src: "LICENSE", dest: "dist", absolute: false },
-        { src: "README.MD", dest: "dist", absolute: false },
-        { src: "CHANGELOG.MD", dest: "dist", absolute: false },
-      ],
-    }),
-  ],
+  onwarn: (e) => {
+    console.warn("BAHMAN WARN:", e.cause);
+  },
+  plugins: [treser(), typescript(), image({ dom: true })],
 });
