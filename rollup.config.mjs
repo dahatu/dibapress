@@ -5,8 +5,6 @@ import typescript from "@rollup/plugin-typescript";
 import image from "@rollup/plugin-image";
 import copy from "rollup-plugin-copy";
 import css from "rollup-plugin-import-css";
-import scss from "rollup-plugin-scss";
-import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -33,13 +31,9 @@ export default defineConfig({
   },
   plugins: [
     css(),
-    scss(),
-    treser(),
     typescript(),
-    image({ dom: true }),
-    vanillaExtractPlugin({
-      identifiers: ({ hash }) => `dibapress_${hash}`,
-    }),
+    image({}),
+    treser(),
     copy({
       targets: [
         {

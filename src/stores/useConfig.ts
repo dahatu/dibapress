@@ -20,10 +20,10 @@ export const useConfig = create<ConfigStoreProps>()(
     updateAccentColor: (color: string) => {
       set({ accentColor: color })
     },
-    theme: 'dark',
+    theme: 'system',
     updateTheme: (theme) => {
-      console.log("bahman")
-    }
+      set({theme: theme})
+    },
   }), {
     name: "dibapress-config",
     storage: createJSONStorage(() => localStorage)

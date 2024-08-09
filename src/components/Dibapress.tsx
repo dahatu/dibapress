@@ -1,7 +1,18 @@
+/** @jsx jsx */
+
 import React from "react";
-import { useConfig } from "../stores/useConfig";
-import Skeleton from "./Skeleton";
+import { jsx, ThemeProvider } from "@emotion/react";
+import Skeleton from "components/Skeleton";
 import { SpinnerCircularFixed } from "spinners-react";
+import { useConfig } from "stores/useConfig";
+
+export type Theme = {
+  colors: {
+    accent: string;
+    background: string;
+    foreground: string;
+  };
+};
 
 type Field = {
   key: string;
@@ -24,22 +35,48 @@ type Props = {
 };
 
 const Dibapress: React.FC<Props> = (props) => {
-
   const config = useConfig();
+  const [loaded, setLoaded] = React.useState(false);
 
-  const [loaded, setLoaded] = React.useState(false)
+  const theme = React.useMemo((): Theme => {
+    return {
+      colors: {
+        accent: config.accentColor,
+        background: config.theme == "dark" ? "#111" : "#fff",
+        foreground: config.theme == "dark" ? "#fff" : "#000",
+      },
+    };
+  }, [config]);
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     if (config) {
-      setLoaded(true)
+      setLoaded(true);
     }
-  }, [])
+  }, []);
 
   return (
-    <div id="dibapress">
-      {!loaded && <SpinnerCircularFixed color={config.accentColor} secondaryColor="#ccc"/>}
-      {loaded && <Skeleton />}
-    </div>
+    <ThemeProvider theme={theme}>
+      <div
+        id="dibapress"
+        css={{
+          fontSize: "80%",
+          backgroundColor: theme.colors.background,
+          color: theme.colors.foreground,
+          userSelect: "none",
+          msUserSelect: "none",
+          WebkitUserSelect: "none",
+          MozUserSelect: "none",
+        }}
+      >
+        {!loaded && (
+          <SpinnerCircularFixed
+            color={theme.colors.accent}
+            secondaryColor="#ccc"
+          />
+        )}
+        {loaded && <Skeleton />}
+      </div>
+    </ThemeProvider>
   );
 };
 

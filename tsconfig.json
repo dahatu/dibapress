@@ -13,6 +13,10 @@
     "alwaysStrict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "moduleDetection": "auto"
+    "moduleDetection": "auto",
+    "paths": {
+      "@src/*": ["./src/*"]
+    }
+    
   }
 }
