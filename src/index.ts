@@ -1,2 +1,2 @@
-import Dibapress from "./components/Dibapress";             
+import Dibapress from "components/Dibapress";             
 export default Dibapress ;

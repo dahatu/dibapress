@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-type ThemeVariant = 'system' | 'light' | 'dark'
+type ThemeVariant = 'auto' | 'light' | 'dark'
 
 type ConfigStoreProps = {
   baseUrl: string;
@@ -20,7 +20,7 @@ export const useConfig = create<ConfigStoreProps>()(
     updateAccentColor: (color: string) => {
       set({ accentColor: color })
     },
-    theme: 'system',
+    theme: 'auto',
     updateTheme: (theme) => {
       set({theme: theme})
     },

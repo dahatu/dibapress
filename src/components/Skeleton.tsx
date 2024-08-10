@@ -1,5 +1,4 @@
 /** @jsx jsx */
-
 import React from "react";
 import { jsx, useTheme } from "@emotion/react";
 import { useConfig } from "stores/useConfig";
@@ -10,7 +9,8 @@ import { CirclePicker } from "react-color";
 import Button from "components/admin/elements/Button";
 import Image from "next/image";
 // @ts-ignore
-import Avatar from "assets/avatar.png";
+import Avatar from "../assets/avatar.png";
+import { ShuffleIcon } from "lucide-react";
 
 function Skeleton() {
   const config = useConfig();
@@ -119,11 +119,13 @@ function Skeleton() {
         <br />
 
         <Button
+        css={{ display: 'flex', flexDirection:'row', alignItems:'center', gap:5 }}
           onClick={() => {
-            alert("done");
+            // alert("done");
           }}
         >
-          + New Music
+          <ShuffleIcon size={16}/>
+          Smart Shuffle
         </Button>
         <div style={{ minHeight: 3000 }}></div>
       </div>

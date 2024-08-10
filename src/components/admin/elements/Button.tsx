@@ -1,9 +1,10 @@
 /** @jsx jsx */
-
+import React from 'react'
 import { jsx, useTheme } from "@emotion/react";
 import { useConfig } from "stores/useConfig";
 import color from "color";
 import { Theme } from "components/Dibapress";
+import Color from 'color';
 
 type Props = React.PropsWithChildren<
   {
@@ -25,19 +26,17 @@ const Button: React.FC<Props> = (props) => {
   return (
     <button
       css={{
-        backgroundColor: color(theme.colors.foreground).alpha(0.05).toString(),
-        paddingBlock: 8,
+        backgroundColor: theme.colors.accent,
+        paddingBlock: 5,
         paddingInline: 10,
         borderRadius: 5,
         border: 'none',
-        color: "#fff",
+        color:  "#fff",
         ":hover": {
-          backgroundColor: color(theme.colors.foreground).alpha(0.1).toString(),
+          backgroundColor: color(theme.colors.accent).lighten(0.1).toString(),
         },
         ":active": {
-          backgroundColor: color(theme.colors.foreground)
-            .alpha(0.08)
-            .toString(),
+          backgroundColor: color(theme.colors.accent).lighten(0.05).toString(),
         },
       }}
       {...props}

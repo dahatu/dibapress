@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 
 export default defineConfig({
   input: Object.fromEntries(
-    globSync(["./src/**/*.ts", "./src/**/*.tsx"]).map((file) => [
+    globSync(["./src/**/*.ts", "./src/**/*.tsx", "./src/**/*.png"]).map((file) => [
       path.relative(
         "src",
         file.slice(0, file.length - path.extname(file).length)
@@ -30,10 +30,10 @@ export default defineConfig({
     console.warn("BAHMAN WARN:", e.cause);
   },
   plugins: [
-    css(),
-    typescript(),
-    image({}),
     treser(),
+    css(),
+    image(),
+    typescript(),
     copy({
       targets: [
         {

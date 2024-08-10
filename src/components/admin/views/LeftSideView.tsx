@@ -1,19 +1,16 @@
 /** @jsx jsx */
-
 import React from "react";
 import { jsx, useTheme } from "@emotion/react";
 import { Theme } from "components/Dibapress";
 import { useConfig } from "stores/useConfig";
-import { Swiper, SwiperSlide, useSwiper, useSwiperSlide } from "swiper/react";
+import { useSwiper, useSwiperSlide } from "swiper/react";
 import {
   AlbumIcon,
   ChevronLeft,
   ChevronRight,
   HomeIcon,
   ImageIcon,
-  Music2,
   MusicIcon,
-  SettingsIcon,
   ShapesIcon,
   UserIcon,
   VideoIcon,
@@ -27,6 +24,7 @@ type SlideMenuItemProps = {
   title: string;
   onClick?: () => void;
   selected?: boolean;
+  badge?: any;
 };
 
 const SlideMenuItem: React.FC<SlideMenuItemProps> = (props) => {
@@ -46,14 +44,14 @@ const SlideMenuItem: React.FC<SlideMenuItemProps> = (props) => {
         paddingInline: 10,
         paddingBlock: 8,
         borderRadius: 5,
-        opacity: props.selected ? 1 : 0.6,
+        opacity: props.selected ? 1 : 0.8,
         backgroundColor: props.selected
           ? Color(config.accentColor).alpha(0.1).toString()
           : "transparent",
         "&:hover": {
           backgroundColor: props.selected
             ? undefined
-            : Color(theme.colors.foreground).alpha(0.1).toString(),
+            : Color(theme.colors.foreground).alpha(0.08).toString(),
         },
       }}
     >
@@ -61,7 +59,7 @@ const SlideMenuItem: React.FC<SlideMenuItemProps> = (props) => {
         style={{
           marginTop: -1,
           color: props.selected ? theme.colors.accent : theme.colors.foreground,
-          opacity: props.selected ? 1 : 0.6,
+          // opacity: props.selected ? 1 : 0.6,
         }}
       >
         {props.icon}
@@ -72,7 +70,30 @@ const SlideMenuItem: React.FC<SlideMenuItemProps> = (props) => {
           color: props.selected ? theme.colors.accent : theme.colors.foreground,
         }}
       >
-        {props.title}
+        <div
+          css={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 5,
+          }}
+        >
+          <div>{props.title}</div>
+          {props.badge > 0 && (
+            <div
+              css={{
+                fontSize: 9,
+                backgroundColor: theme.colors.accent,
+                color: "#fff",
+                paddingBlock: 0,
+                paddingInline: 5,
+                borderRadius: 10,
+              }}
+            >
+              {props.badge.toLocaleString()}
+            </div>
+          )}
+        </div>
       </div>
       {props.rightIcon}
     </div>
@@ -90,44 +111,50 @@ const Slide1View = () => {
     return [
       {
         id: Math.random(),
+        type: "menu-item",
+        title: "Dashboard",
+        icon: <HomeIcon size={16} />,
+        count: 0,
+      },
+      {
+        id: Math.random(),
         type: "section",
         title: "Collections",
       },
       {
         id: Math.random(),
         type: "menu-item",
-        title: "Dashboard",
-        icon: <HomeIcon size={16} />,
-      },
-      {
-        id: Math.random(),
-        type: "menu-item",
         title: "Musics",
         icon: <MusicIcon size={16} />,
+        count: 334200,
       },
       {
         id: Math.random(),
         type: "menu-item",
         title: "Videos",
         icon: <VideoIcon size={16} />,
+        count: 16000,
       },
       {
         id: Math.random(),
         type: "menu-item",
         title: "Albums",
         icon: <AlbumIcon size={16} />,
+        count: 5,
       },
       {
         id: Math.random(),
         type: "menu-item",
         title: "Artists",
         icon: <UserIcon size={16} />,
+        count: 8,
       },
       {
         id: Math.random(),
         type: "menu-item",
         title: "Media",
         icon: <ImageIcon size={16} />,
+        count: 0,
       },
       {
         id: Math.random(),
@@ -139,6 +166,7 @@ const Slide1View = () => {
         type: "menu-item",
         title: "Genres",
         icon: <ShapesIcon size={16} />,
+        count: 0,
       },
     ];
   }, [config.accentColor]);
@@ -154,10 +182,10 @@ const Slide1View = () => {
               css={{
                 paddingInline: 5,
                 opacity: 0.3,
-                marginTop: index > 0 ? 20 : 0,
-                // marginBottom: 5,
+                marginTop: index > 0 ? 10 : 0,
+                marginBottom: 5,
                 fontSize: 10,
-                fontWeight: 'bold',
+                fontWeight: "bold",
               }}
             >
               {item.title}
@@ -181,9 +209,10 @@ const Slide1View = () => {
               />
             }
             selected={selectedItem == index}
+            badge={item.count}
             onClick={() => {
               setSelectedItem(index);
-              swiper.slideNext();
+              // swiper.slideNext();
             }}
           />
         );
@@ -212,14 +241,15 @@ const Slide2View = () => {
 
 const LeftSideView = () => {
   return (
-    <Swiper slidesPerView={1} css={{ width: "100%" }} allowTouchMove={false}>
-      <SwiperSlide>
-        <Slide1View />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Slide2View />
-      </SwiperSlide>
-    </Swiper>
+    <Slide1View />
+    // <Swiper slidesPerView={1} css={{ width: "100%" }} allowTouchMove={false}>
+    //   <SwiperSlide>
+
+    //   </SwiperSlide>
+    //   <SwiperSlide>
+    //     <Slide2View />
+    //   </SwiperSlide>
+    // </Swiper>
   );
 };
 

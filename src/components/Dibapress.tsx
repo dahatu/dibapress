@@ -1,12 +1,13 @@
 /** @jsx jsx */
-
 import React from "react";
 import { jsx, ThemeProvider } from "@emotion/react";
 import Skeleton from "components/Skeleton";
-import { SpinnerCircularFixed } from "spinners-react";
+import { SpinnerCircular, SpinnerCircularFixed, SpinnerCircularSplit } from "spinners-react";
 import { useConfig } from "stores/useConfig";
+import Color from "color";
 
 export type Theme = {
+  dark: boolean;
   colors: {
     accent: string;
     background: string;
@@ -40,6 +41,7 @@ const Dibapress: React.FC<Props> = (props) => {
 
   const theme = React.useMemo((): Theme => {
     return {
+      dark: config.theme == "dark",
       colors: {
         accent: config.accentColor,
         background: config.theme == "dark" ? "#111" : "#fff",
@@ -50,7 +52,9 @@ const Dibapress: React.FC<Props> = (props) => {
 
   React.useEffect(() => {
     if (config) {
-      setLoaded(true);
+      setTimeout(()=>{
+        setLoaded(true);
+      }, 500)
     }
   }, []);
 
@@ -59,7 +63,11 @@ const Dibapress: React.FC<Props> = (props) => {
       <div
         id="dibapress"
         css={{
+          height: "100dvh",
           fontSize: "80%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           backgroundColor: theme.colors.background,
           color: theme.colors.foreground,
           userSelect: "none",
@@ -69,10 +77,12 @@ const Dibapress: React.FC<Props> = (props) => {
         }}
       >
         {!loaded && (
-          <SpinnerCircularFixed
+          <SpinnerCircular
             color={theme.colors.accent}
-            secondaryColor="#ccc"
-          />
+            secondaryColor={Color(theme.colors.foreground).alpha(0.05).toString()}
+            size={30}
+            speed={250}
+            />
         )}
         {loaded && <Skeleton />}
       </div>
