@@ -2,9 +2,18 @@
 import React from "react";
 import { jsx, ThemeProvider } from "@emotion/react";
 import Skeleton from "components/Skeleton";
-import { SpinnerCircular, SpinnerCircularFixed, SpinnerCircularSplit } from "spinners-react";
+import { SpinnerCircular } from "spinners-react";
+import Head from "next/head";
 import { useConfig } from "stores/useConfig";
 import Color from "color";
+
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dibapress | Dashboard",
+  description: "The official Next.js Course Dashboard, built with App Router.",
+  metadataBase: new URL("https://next-learn-dashboard.vercel.sh"),
+};
 
 export type Theme = {
   dark: boolean;
@@ -39,6 +48,13 @@ const Dibapress: React.FC<Props> = (props) => {
   const config = useConfig();
   const [loaded, setLoaded] = React.useState(false);
 
+  React.useEffect(() => {
+    const darkMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    darkMedia.addEventListener("change", (e) => {
+      config.updateTheme(e.matches ? "dark" : "light");
+    });
+  }, []);
+
   const theme = React.useMemo((): Theme => {
     return {
       dark: config.theme == "dark",
@@ -52,11 +68,18 @@ const Dibapress: React.FC<Props> = (props) => {
 
   React.useEffect(() => {
     if (config) {
-      setTimeout(()=>{
+      setTimeout(() => {
         setLoaded(true);
-      }, 500)
+      }, 500);
     }
   }, []);
+
+  React.useEffect(() => {
+    const themeColor = document.createElement("meta");
+    themeColor.name = "theme-color";
+    themeColor.content = '#000';
+    document.head.appendChild(themeColor);
+  }, [theme]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -74,15 +97,21 @@ const Dibapress: React.FC<Props> = (props) => {
           msUserSelect: "none",
           WebkitUserSelect: "none",
           MozUserSelect: "none",
+          "a:hover": {
+            color: theme.colors.accent,
+            textDecoration: "underline",
+          },
         }}
       >
         {!loaded && (
           <SpinnerCircular
             color={theme.colors.accent}
-            secondaryColor={Color(theme.colors.foreground).alpha(0.05).toString()}
+            secondaryColor={Color(theme.colors.foreground)
+              .alpha(0.05)
+              .toString()}
             size={30}
             speed={250}
-            />
+          />
         )}
         {loaded && <Skeleton />}
       </div>
