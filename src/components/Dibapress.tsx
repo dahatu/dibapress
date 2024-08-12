@@ -8,6 +8,7 @@ import { useConfig } from "stores/useConfig";
 import Color from "color";
 
 import { Metadata } from "next";
+import { usePathname } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Dibapress | Dashboard",
@@ -21,6 +22,7 @@ export type Theme = {
     accent: string;
     background: string;
     foreground: string;
+    card: string;
   };
 };
 
@@ -46,6 +48,7 @@ type Props = {
 
 const Dibapress: React.FC<Props> = (props) => {
   const config = useConfig();
+  const pathName = usePathname();
   const [loaded, setLoaded] = React.useState(false);
 
   React.useEffect(() => {
@@ -62,6 +65,7 @@ const Dibapress: React.FC<Props> = (props) => {
         accent: config.accentColor,
         background: config.theme == "dark" ? "#111" : "#fff",
         foreground: config.theme == "dark" ? "#fff" : "#000",
+        card: config.theme == "dark" ? "#111" : "#eee",
       },
     };
   }, [config]);
@@ -70,6 +74,13 @@ const Dibapress: React.FC<Props> = (props) => {
     if (config) {
       setTimeout(() => {
         setLoaded(true);
+        if (pathName.split("/").length == 2) {
+          window.history.pushState(
+            {},
+            null,
+            `/${config.baseUrl}/${config.defaultRoute}`
+          );
+        }
       }, 500);
     }
   }, []);
@@ -77,7 +88,7 @@ const Dibapress: React.FC<Props> = (props) => {
   React.useEffect(() => {
     const themeColor = document.createElement("meta");
     themeColor.name = "theme-color";
-    themeColor.content = '#000';
+    themeColor.content = "#111";
     document.head.appendChild(themeColor);
   }, [theme]);
 
@@ -97,6 +108,7 @@ const Dibapress: React.FC<Props> = (props) => {
           msUserSelect: "none",
           WebkitUserSelect: "none",
           MozUserSelect: "none",
+          colorScheme: theme.dark ? 'dark' : 'light', 
           "a:hover": {
             color: theme.colors.accent,
             textDecoration: "underline",

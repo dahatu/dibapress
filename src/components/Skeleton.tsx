@@ -5,7 +5,7 @@ import { useConfig } from "stores/useConfig";
 import { Theme } from "components/Dibapress";
 import SidebarView from "components/admin/views/SidebarView";
 import Color from "color";
-import { CirclePicker } from "react-color";
+import { AlphaPicker, CirclePicker, HuePicker } from "react-color";
 import Button from "components/admin/elements/Button";
 import Image from "next/image";
 
@@ -54,7 +54,7 @@ function Skeleton() {
       <div
         style={{
           flex: 1,
-          padding: 10,
+          padding: 0,
           paddingInlineStart: isMobileMode ? 10 : 0,
           overflow: "auto",
         }}
@@ -63,29 +63,30 @@ function Skeleton() {
           css={{
             width: "100%",
             height: "100%",
-            borderRadius: 10,
-            boxShadow: `inset 0 0 0 1px ${Color(theme.colors.foreground)
-              .alpha(0.05)
-              .toString()}`,
-            borderRight: "1px solid #0000",
             overflow: "auto",
-            backgroundImage: `linear-gradient(${Color(theme.colors.accent)
-              .alpha(0.01)
-              .toString()} , transparent 50%)`,
-            backgroundColor: Color(theme.colors.foreground)
-              .alpha(0.02)
-              .toString(),
+            // borderRadius: 10,
+            // boxShadow: `inset 0 0 0 1px ${Color(theme.colors.foreground)
+            //   .alpha(0.1)
+            //   .toString()}`,
+            // borderRight: "1px solid #0000",
+            // backgroundImage: `linear-gradient(${Color(theme.colors.accent)
+            //   .alpha(0.01)
+            //   .toString()} , transparent)`,
+            // backgroundColor: Color(theme.colors.foreground)
+            //   .alpha(0.02)
+            //   .toString(),
           }}
         >
           <Scrollbars
             height={"100%"}
             width={"100%"}
             autoHide
+            autoHideTimeout={100}
             renderThumbVertical={() => {
               return (
                 <div
                   css={{
-                    width: 5,
+                    width: 6,
                     borderRadius: 100,
                     backgroundColor: Color(theme.colors.foreground)
                       .alpha(0.1)
@@ -119,10 +120,10 @@ function Skeleton() {
                 {isMobileMode && floatingSidebarVisible && (
                   <motion.div
                     ref={ref}
-                    initial={{ opacity: 0, left: -10 }}
-                    animate={{ opacity: 1, left: 10 }}
-                    exit={{ opacity: 0, left: -10 }}
-                    transition={{ duration: 0.1 }}
+                    initial={{ opacity: 0, left: -20, filter: "blur(5px)" }}
+                    animate={{ opacity: 1, left: 10, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, left: -20, filter: "blur(5px)" }}
+                    // transition={{ duration: 0.1 }}
                     css={{
                       position: "fixed",
                       top: 10,
@@ -166,17 +167,15 @@ function Skeleton() {
                 </Button>
               </div>
               <br />
-              <br />
-              <CirclePicker
+              <HuePicker
                 color={config.accentColor}
                 onChange={(e) => {
                   config.updateAccentColor(e.hex);
                 }}
-                circleSize={20}
-                circleSpacing={5}
-                width="auto"
+                // circleSize={25}
+                // circleSpacing={10}
+                // width="auto"
               />
-              <br />
               <br />
               <div css={{ display: "flex", flexDirection: "row", gap: 10 }}>
                 <button
@@ -203,8 +202,6 @@ function Skeleton() {
               </div>
               <div>current theme: {config.theme.toString()}</div>
               <br />
-              <br />
-
               <Button
                 css={{
                   display: "flex",
@@ -219,7 +216,6 @@ function Skeleton() {
                 <ShuffleIcon size={16} />
                 Smart Shuffle
               </Button>
-              <br />
               <br />
               <div style={{ minHeight: 3000 }}></div>
             </div>
