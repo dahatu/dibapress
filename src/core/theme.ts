@@ -150,7 +150,7 @@ const theme = extendTheme({
           _focus: {
             bg: gray[100],
             _dark: {
-              bg: gray[800],
+              bg: gray[800], 
             },
           },
         },
