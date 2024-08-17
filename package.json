@@ -2,19 +2,19 @@
   "name": "dibapress",
   "version": "1.0.0",
   "scripts": {
-    "dev": "rollup -c --watch",
-    "build": "rollup -c",
     "git": "git add . && git commit -m \"update: Rollup config updated\" && git push"
   },
   "keywords": [
     "dibapress",
     "cms",
-    "wordpress"
+    "ecommerce",
+    "platform"
   ],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@chakra-ui/next-js": "^2.2.0",
     "@rollup/plugin-image": "^3.0.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
