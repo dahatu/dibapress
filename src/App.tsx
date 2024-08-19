@@ -4,7 +4,6 @@ import {
   Container,
   Divider,
   HStack,
-  IconButton,
   Image,
   Menu,
   MenuButton,
@@ -20,15 +19,11 @@ import {
 import { useParams } from "next/navigation";
 import { useDibapres } from "./store/useDibapress";
 import {
-  AlbumIcon,
-  Box,
   ChevronDownIcon,
   ChevronRightIcon,
-  Divide,
   EarthIcon,
   EditIcon,
   EllipsisIcon,
-  GridIcon,
   LayoutGridIcon,
   LibraryIcon,
   MicIcon,
@@ -42,10 +37,7 @@ import { theme } from "./theme";
 import { Link } from "@chakra-ui/next-js";
 import React from "react";
 
-import Avatar from './assets/avatar.png'
-
-const AvatarSrc =
-  "https://img.freepik.com/free-photo/3d-cartoon-style-character_23-2151034021.jpg";
+import AvatarPng from './assets/avatar.png'
 
 const App = () => {
   const dibapress = useDibapres();
@@ -106,7 +98,7 @@ const App = () => {
             justifyContent={"start"}
           >
             <HStack>
-              <Image src={AvatarSrc} w={5} h={5} rounded={"100px"} />
+              <Image src={AvatarPng} w={5} h={5} rounded={"100px"} />
               <Text>Bahman</Text>
               <ChevronDownIcon size={16} opacity={0.5} />
               <Spacer />
@@ -126,7 +118,7 @@ const App = () => {
                 mb={2}
               >
                 <HStack alignItems={"start"}>
-                  <Image src={AvatarSrc} w={12} h={12} rounded={"100px"} />
+                  <Image src={AvatarPng} w={12} h={12} rounded={"100px"} />
                   <VStack gap={0} alignItems={"start"}>
                     <Text fontWeight={"bold"}>Bahman World</Text>
                     <Text mt={-1} fontSize={10} opacity={0.5}>

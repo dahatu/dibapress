@@ -1,8 +1,19 @@
 {
-  "name": "dibapress",
-  "version": "1.0.0",
+  "name": "@dahatu/dibapress",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "private": false,
+  "publisher": "dahatu",
+  "publishConfig": {
+    "tag": "dibapress",
+    "access": "public"
+  },
+  "licenses": ["MIT"],
+  "repository": {
+    "url": "https://github.com/dahatu/dibapress",
+    "type": "repository"
+  },
   "scripts": {
     "build": "tsup",
     "git": "git add . && git commit -m \"update: Rollup config updated\" && git push"
