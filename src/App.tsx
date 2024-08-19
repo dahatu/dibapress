@@ -42,6 +42,8 @@ import { theme } from "./theme";
 import { Link } from "@chakra-ui/next-js";
 import React from "react";
 
+import Avatar from './assets/avatar.png'
+
 const AvatarSrc =
   "https://img.freepik.com/free-photo/3d-cartoon-style-character_23-2151034021.jpg";
 
@@ -49,6 +51,7 @@ const App = () => {
   const dibapress = useDibapres();
   const params = useParams<{dibapress: []}>();
   console.table(params);
+
 
   const [items, setItems] = React.useState([
     {
@@ -206,7 +209,7 @@ const App = () => {
       <Container maxW={1000} p={5}>
         <VStack alignItems={"start"}>
           <HStack>
-            <Button as={Link} href={"/admin"} variant={"outline"}>
+            <Button as={Link} colorScheme="'orange" href={"/admin"} variant={"unstyled"}>
               Home
             </Button>
             <Button as={Link} href={"/admin/about"} variant={"outline"}>

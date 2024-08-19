@@ -57,17 +57,13 @@ const theme = extendTheme(<ThemeOverride>{
         size: "sm",
       },
       variants: {
-        outline: {
-          _hover: {
-            bg: 'gray.100',
-            borderColor: 'gray.300'
+        unstyled: {
+          bg: "red",
+          '[colorScheme="orange"]': {
+            bg: "orange",
           },
-          _active: {
-            bg: 'gray.200',
-            borderColor: 'gray.300'
-          }
-        }
-      }
+        },
+      },
     },
     Menu: {
       baseStyle: (props: ThemeComponentProps) => ({

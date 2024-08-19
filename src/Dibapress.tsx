@@ -7,6 +7,7 @@ import { useDibapres, DibapressConfig } from "./store/useDibapress";
 
 type Props = {
   config: DibapressConfig;
+  name?: string
 };
 
 const Dibapress: React.FC<Props> = (props) => {
