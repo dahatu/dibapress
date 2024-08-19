@@ -1,7 +1,10 @@
 {
   "name": "dibapress",
   "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "tsup",
     "git": "git add . && git commit -m \"update: Rollup config updated\" && git push"
   },
   "keywords": [
@@ -27,6 +30,7 @@
     "react-dom": "^18.3.1",
     "rollup": "^4.20.0",
     "rollup-plugin-copy": "^3.5.0",
+    "tsup": "^8.2.4",
     "typescript": "^5.5.4"
   },
   "dependencies": {

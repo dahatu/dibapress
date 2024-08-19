@@ -3,19 +3,16 @@ import { ChakraProvider } from "@chakra-ui/react";
 import App from "./App";
 import { theme } from "./theme";
 import React from "react";
-import { DibapressConfig, useDibapres } from "./useDibapress";
+import { useDibapres, DibapressConfig } from "./store/useDibapress";
 
 type Props = {
   config: DibapressConfig;
 };
 
 const Dibapress: React.FC<Props> = (props) => {
+  const dibapress = useDibapres();
 
-  const dibapress = useDibapres()
- 
-  React.useEffect(() => {
-    dibapress.updateConfig(props.config)
-  }, [])
+
 
   return (
     <CacheProvider>

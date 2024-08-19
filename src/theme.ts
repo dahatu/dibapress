@@ -7,29 +7,17 @@ import { mode } from "@chakra-ui/theme-tools";
 
 const theme = extendTheme(<ThemeOverride>{
   config: {
-    initialColorMode: "system",
+    initialColorMode: "light",
     useSystemColorMode: true,
   },
   colors: {
     black: "#181612",
     white: "#ffffff",
-    // gray: {
-    //   "50": "#fafafa",
-    //   "100": "#e8e8e8",
-    //   "200": "#e2e2e2",
-    //   "300": "#d4d4d4",
-    //   "400": "#a3a3a3",
-    //   "500": "#737373",
-    //   "600": "#525252",
-    //   "700": "#404040",
-    //   "800": "#262626",
-    //   "900": "#151515",
-    // },
     gray: {
       "50": "#fafaf9",
       "100": "#e5e5e4",
-      "200": "#e9e7e6",
-      "300": "#d6d3d1",
+      "200": "#d9d7d6",
+      "300": "#c6c3c1",
       "400": "#a8a29e",
       "500": "#78716c",
       "600": "#57534e",
@@ -68,6 +56,18 @@ const theme = extendTheme(<ThemeOverride>{
         variant: "ghost",
         size: "sm",
       },
+      variants: {
+        outline: {
+          _hover: {
+            bg: 'gray.100',
+            borderColor: 'gray.300'
+          },
+          _active: {
+            bg: 'gray.200',
+            borderColor: 'gray.300'
+          }
+        }
+      }
     },
     Menu: {
       baseStyle: (props: ThemeComponentProps) => ({
@@ -98,5 +98,3 @@ const theme = extendTheme(<ThemeOverride>{
 });
 
 export { theme };
-
-// 0 1 2 3 4 5 6 7 8 9 a b c d e f

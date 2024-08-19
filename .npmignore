@@ -1,0 +1,12 @@
+
+# dirs
+src
+node_modules
+
+# files
+tsconfig.json
+package-lock.json
+
+# configs
+.prettierrc
+.gitignore
