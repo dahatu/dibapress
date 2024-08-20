@@ -1,2 +1,2 @@
-import Dibapress from './Dibapress'
+import Dibapress from './layout'
 export {Dibapress}

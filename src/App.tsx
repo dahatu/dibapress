@@ -1,22 +1,24 @@
 import {
-  AbsoluteCenter,
+  Box,
   Button,
+  Center,
   Container,
   Divider,
   HStack,
+  Icon,
   Image,
   Menu,
   MenuButton,
-  MenuDivider,
   MenuGroup,
   MenuItem,
   MenuList,
   Spacer,
+  Stack,
   Text,
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useDibapres } from "./store/useDibapress";
 import {
   ChevronDownIcon,
@@ -24,47 +26,48 @@ import {
   EarthIcon,
   EditIcon,
   EllipsisIcon,
+  HomeIcon,
   LayoutGridIcon,
   LibraryIcon,
   MicIcon,
   MusicIcon,
+  PlusIcon,
   Settings2Icon,
   UserCircleIcon,
   UsersIcon,
   VideoIcon,
 } from "lucide-react";
 import { theme } from "./theme";
-import { Link } from "@chakra-ui/next-js";
 import React from "react";
 
-import AvatarPng from './assets/avatar.png'
+const AvatarSrc =
+  "https://img.freepik.com/free-psd/3d-illustration-with-online-avatar_23-2151303097.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1721692800&semt=ais_user";
 
 const App = () => {
   const dibapress = useDibapres();
-  const params = useParams<{dibapress: []}>();
-  console.table(params);
-
+  const router = useRouter();
+  const [selected, setSelected] = React.useState(0);
 
   const [items, setItems] = React.useState([
     {
       id: 1,
       name: "Music",
-      icon: <MusicIcon size={16} />,
+      icon: <MusicIcon />,
     },
     {
       id: 2,
       name: "Video",
-      icon: <VideoIcon size={16} />,
+      icon: <VideoIcon />,
     },
     {
       id: 3,
       name: "Album",
-      icon: <LibraryIcon size={16} />,
+      icon: <LibraryIcon />,
     },
     {
       id: 4,
       name: "Artist",
-      icon: <MicIcon size={16} />,
+      icon: <MicIcon />,
     },
   ]);
 
@@ -82,7 +85,7 @@ const App = () => {
           "#00000009",
           "#ffffff05"
         )}`}
-        minW={220}
+        minW={210}
         p={2}
         h={"100dvh"}
       >
@@ -98,27 +101,26 @@ const App = () => {
             justifyContent={"start"}
           >
             <HStack>
-              <Image src={AvatarPng} w={5} h={5} rounded={"100px"} />
+              <Image src={AvatarSrc} w={5} h={5} rounded={"100px"} />
               <Text>Bahman</Text>
               <ChevronDownIcon size={16} opacity={0.5} />
               <Spacer />
               <Settings2Icon size={16} />
             </HStack>
           </MenuButton>
-          <MenuList w={230}>
+          <MenuList w={240}>
             <MenuGroup>
               <VStack
                 alignItems={"start"}
                 gap={0}
-                bg={useColorModeValue("#00000008", "#ffffff06")}
+                bg={useColorModeValue("#00000011", "#ffffff11")}
+                rounded={6}
                 px={1}
                 py={3}
-                m={0}
-                rounded={"md"}
                 mb={2}
               >
                 <HStack alignItems={"start"}>
-                  <Image src={AvatarPng} w={12} h={12} rounded={"100px"} />
+                  <Image src={AvatarSrc} w={12} h={12} rounded={"100px"} />
                   <VStack gap={0} alignItems={"start"}>
                     <Text fontWeight={"bold"}>Bahman World</Text>
                     <Text mt={-1} fontSize={10} opacity={0.5}>
@@ -131,18 +133,20 @@ const App = () => {
                 </HStack>
               </VStack>
             </MenuGroup>
-            <MenuItem icon={<UserCircleIcon size={16} />}>
-              Invite Friends
-            </MenuItem>
-            <MenuItem icon={<EarthIcon size={16} />}>Visit Site</MenuItem>
-            <MenuItem icon={<UsersIcon size={16} />}>Edit Profile</MenuItem>
-            <MenuItem icon={<Settings2Icon size={16} />}>Settings</MenuItem>
-            <MenuDivider />
-            <MenuItem
-              icon={<EditIcon size={16} color={theme.colors.red[500]} />}
-            >
-              <Text color={"red.500"}>Sign Out</Text>
-            </MenuItem>
+            <MenuGroup>
+              <MenuItem icon={<UserCircleIcon size={16} />}>
+                Invite Friends
+              </MenuItem>
+              <MenuItem icon={<EarthIcon size={16} />}>Visit Site</MenuItem>
+              <MenuItem icon={<UsersIcon size={16} />}>Edit Profile</MenuItem>
+              <MenuItem icon={<Settings2Icon size={16} />}>Settings</MenuItem>
+              {/* <MenuDivider /> */}
+              <MenuItem
+                icon={<EditIcon size={16} color={theme.colors.red[500]} />}
+              >
+                <Text color={"red.500"}>Sign Out</Text>
+              </MenuItem>
+            </MenuGroup>
           </MenuList>
         </Menu>
 
@@ -153,37 +157,81 @@ const App = () => {
             <LayoutGridIcon size={12} />
             <Text fontSize={"xs"}>Collections</Text>
           </HStack>
-          {items.map((item) => {
+          {items.map((item, index) => {
             return (
-              <Button role="group" w={"100%"} justifyContent={"start"} p={1}>
-                <HStack w={"100%"} gap={1}>
-                  <Button position={"relative"} size={"xs"}>
-                    <HStack
+              <HStack
+                role="group"
+                onClick={() => setSelected(index)}
+                transition={"all 0.2s ease"}
+                cursor={"pointer"}
+                bg={
+                  selected == index
+                    ? useColorModeValue("gray.100", "gray.800")
+                    : "transparent"
+                }
+                _hover={{ bg: useColorModeValue("gray.100", "gray.800") }}
+                rounded={"md"}
+                w={"100%"}
+                gap={2}
+                px={1}
+                py={1}
+              >
+                <Button
+                  size="xs"
+                  position={"relative"}
+                  variant={'unstyled'}
+                  _hover={{ bg: useColorModeValue("gray.300", "gray.700") }}
+                >
+                  <Center>
+                    <Icon
+                      fontSize={16}
                       position={"absolute"}
-                      transition={"all 0.2s ease"}
+                      transition={"all 0.1s ease"}
                       transform={"scale(1)"}
-                      _groupHover={{ transform: "scale(0)" }}
+                      _groupHover={{
+                        transform: "scale(0)",
+                      }}
                     >
-                      <AbsoluteCenter>{item.icon}</AbsoluteCenter>
-                    </HStack>
-                    <HStack
+                      {item.icon}
+                    </Icon>
+                  </Center>
+                  <Center>
+                    <Icon
+                      fontSize={16}
                       position={"absolute"}
-                      transition={"all 0.2s ease"}
+                      transition={"all 0.1s ease"}
                       transform={"scale(0)"}
-                      _groupHover={{ transform: "scale(1)" }}
+                      _groupHover={{
+                        transform: "scale(1)",
+                      }}
                     >
-                      <AbsoluteCenter>
-                        <ChevronRightIcon size={16} />
-                      </AbsoluteCenter>
-                    </HStack>
-                  </Button>
+                      <ChevronRightIcon />
+                    </Icon>
+                  </Center>
+                </Button>
+                <Button variant={"unstyled"} size={"xs"}>
                   <Text>{item.name}</Text>
-                  <Spacer />
-                  <Button as={Text} p={1} size={"xs"}>
-                    <EllipsisIcon size={14} />
+                </Button>
+                <Spacer />
+                <HStack gap={0}>
+                  <Button
+                    size={"xs"}
+                    _hover={{ bg: useColorModeValue("gray.300", "gray.700") }}
+                  >
+                    <Icon fontSize={14}>
+                      <EllipsisIcon />
+                    </Icon>
                   </Button>
+                  {/* <Button
+                    size={"xs"}
+                    _hover={{ bg: useColorModeValue("gray.300", "gray.700") }}
+                  >
+                    <Icon fontSize={14}>
+                      <PlusIcon />
+                    </Icon>
+                  </Button> */}
                 </HStack>
-              </Button>
+              </HStack>
             );
           })}
         </VStack>
@@ -198,23 +246,38 @@ const App = () => {
           Dibapress CMS v1.0.2
         </Text>
       </VStack>
-      <Container maxW={1000} p={5}>
-        <VStack alignItems={"start"}>
+      <Container maxW={1000} p={5} overflow={"clip"}>
+        <VStack alignItems={"start"} overflow={"clip"} flexWrap={"wrap"}>
           <HStack>
-            <Button as={Link} colorScheme="'orange" href={"/admin"} variant={"unstyled"}>
-              Home
+            <Button
+              onClick={() => {
+                router.push("/admin");
+              }}
+              variant={"outline"}
+            >
+              <HStack>
+                <VStack>
+                  <HomeIcon size={14} />
+                </VStack>
+                <Text>Home Page</Text>
+              </HStack>
             </Button>
-            <Button as={Link} href={"/admin/about"} variant={"outline"}>
+            <Button
+              onClick={() => router.push("/admin/about")}
+              variant={"outline"}
+            >
               About
             </Button>
-            <Button as={Link} href={"/admin/profile/edit"} variant={"outline"}>
+            <Button
+              onClick={() => router.push("/admin/profile/edit")}
+              variant={"outline"}
+            >
               Profile
             </Button>
-            <Button variant={"solid"} colorScheme={"orange"}>
+            <Button variant={"outline"} colorScheme={"orange"}>
               Dark / Light
             </Button>
           </HStack>
-          <Text>{params.dibapress?.join?.(' -> ')}</Text>
         </VStack>
       </Container>
     </HStack>

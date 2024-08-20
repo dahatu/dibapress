@@ -6,6 +6,7 @@ node_modules
 # files
 tsconfig.json
 package-lock.json
+.env
 
 # configs
 .prettierrc

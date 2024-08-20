@@ -56,14 +56,6 @@ const theme = extendTheme(<ThemeOverride>{
         variant: "ghost",
         size: "sm",
       },
-      variants: {
-        unstyled: {
-          bg: "red",
-          '[colorScheme="orange"]': {
-            bg: "orange",
-          },
-        },
-      },
     },
     Menu: {
       baseStyle: (props: ThemeComponentProps) => ({
@@ -71,17 +63,17 @@ const theme = extendTheme(<ThemeOverride>{
           p: 1,
           mt: -1,
           border: "1px solid",
-          rounded: "md",
-          borderColor: mode("#0002", "#fff1")(props),
+          borderColor: mode('#0002', '#fff1')(props),
+          rounded: 10,
           _dark: {
             bg: "gray.900",
           },
         },
         item: {
           bg: "transparent",
-          rounded: "md",
+          rounded: 7,
           _hover: {
-            bg: mode("gray.100", "gray.800")(props),
+            bg: mode("#0001", "#fff1")(props),
           },
         },
         divider: {

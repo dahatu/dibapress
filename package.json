@@ -9,7 +9,6 @@
     "tag": "dibapress",
     "access": "public"
   },
-  "licenses": ["MIT"],
   "repository": {
     "url": "https://github.com/dahatu/dibapress",
     "type": "repository"
